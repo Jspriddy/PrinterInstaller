@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "juj0fSXUDTEDVpdWIakHcICc/yFytxsuz7g6F18vTQSLR+fnQEVMS3aV+8fXvCoSaIq+jjcwcUVmbzexCti3ZA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\Documents\\Claude\\HPPrinterScanner\\HPPrinterScanner.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\.nuget\\packages\\system.codedom\\10.0.7\\system.codedom.10.0.7.nupkg.sha512",
+    "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
+    "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\.nuget\\packages\\system.management\\10.0.7\\system.management.10.0.7.nupkg.sha512",
+    "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\.nuget\\packages\\system.serviceprocess.servicecontroller\\6.0.0\\system.serviceprocess.servicecontroller.6.0.0.nupkg.sha512",
+    "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\.nuget\\packages\\wpf-ui\\3.0.5\\wpf-ui.3.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}
