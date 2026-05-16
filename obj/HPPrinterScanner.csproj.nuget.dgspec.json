@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\Documents\\Claude\\HPPrinterScanner\\HPPrinterScanner.csproj": {}
+    "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\Documents\\Github\\PrinterInstaller\\HPPrinterScanner.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\Documents\\Claude\\HPPrinterScanner\\HPPrinterScanner.csproj": {
+    "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\Documents\\Github\\PrinterInstaller\\HPPrinterScanner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\Documents\\Claude\\HPPrinterScanner\\HPPrinterScanner.csproj",
+        "projectUniqueName": "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\Documents\\Github\\PrinterInstaller\\HPPrinterScanner.csproj",
         "projectName": "HPPrinterScanner",
-        "projectPath": "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\Documents\\Claude\\HPPrinterScanner\\HPPrinterScanner.csproj",
+        "projectPath": "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\Documents\\Github\\PrinterInstaller\\HPPrinterScanner.csproj",
         "packagesPath": "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\Documents\\Claude\\HPPrinterScanner\\obj\\",
+        "outputPath": "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\Documents\\Github\\PrinterInstaller\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jonathanspring.SIBERIANEXILE.000\\AppData\\Roaming\\NuGet\\NuGet.Config",

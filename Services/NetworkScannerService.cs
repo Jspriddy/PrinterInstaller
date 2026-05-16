@@ -37,6 +37,9 @@ namespace HPPrinterScanner.Services
             "A8:97:DC", "AC:CF:85", "B0:5A:DA", "B4:99:BA", "B8:AF:67",
             "BC:EA:FA", "D4:85:64", "D8:9D:67", "E8:39:35", "F4:CE:46",
             "FC:15:B4", "10:60:4B", "14:58:D0", "18:A9:05", "E0:70:EA",
+            // From actual printers
+            "C0:18:03", "2C:58:B9", "48:EA:62", "38:CA:84", "7C:57:58",
+            "24:FB:E3", "",
         };
 
         private static readonly HttpClient Http = new(
