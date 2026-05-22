@@ -4,134 +4,91 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       Title="Settings">
 
-    <StackPanel Margin="16" MaxWidth="560" HorizontalAlignment="Left">
+    <Page.Resources>
+        <Style x:Key="NavRowStyle" TargetType="Button">
+            <Setter Property="HorizontalAlignment"        Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Padding"                    Value="16 14" />
+            <Setter Property="Cursor"                     Value="Hand" />
+            <Setter Property="Background"   Value="{DynamicResource ControlFillColorDefaultBrush}" />
+            <Setter Property="BorderBrush"  Value="{DynamicResource ControlElevationBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background"
+                                        Value="{DynamicResource SubtleFillColorSecondaryBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="bd" Property="Background"
+                                        Value="{DynamicResource SubtleFillColorTertiaryBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
-        <TextBlock Text="Settings" FontSize="20" FontWeight="SemiBold" Margin="0 0 0 16" />
+    <StackPanel Margin="16" MaxWidth="600" HorizontalAlignment="Left">
 
-        <!-- Network card -->
-        <ui:CardExpander IsExpanded="False" Margin="0 0 0 12">
-            <ui:CardExpander.Header>
-                <StackPanel>
-                    <TextBlock Text="Network" FontWeight="SemiBold" />
+        <TextBlock Text="Settings" FontSize="20" FontWeight="SemiBold" Margin="0 0 0 20" />
+
+        <Button Style="{StaticResource NavRowStyle}" Click="NetworkButton_Click" Margin="0 0 0 4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ui:SymbolIcon Symbol="Globe24" FontSize="22" VerticalAlignment="Center"
+                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                               Margin="0 0 16 0" />
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Text="Network" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
                     <TextBlock Text="Subnet used when scanning for printers"
-                               Opacity="0.6" FontSize="12" />
+                               FontSize="12"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
                 </StackPanel>
-            </ui:CardExpander.Header>
+                <ui:SymbolIcon Symbol="ChevronRight24" Grid.Column="2" FontSize="14"
+                               VerticalAlignment="Center"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+            </Grid>
+        </Button>
 
-            <StackPanel Margin="0 8 0 0">
-                <!-- Auto-detect read-only display -->
-                <Grid Margin="0 0 0 12">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0">
-                        <TextBlock Text="Auto-detected subnet" FontWeight="Medium" />
-                        <TextBlock x:Name="AutoSubnetLabel" Opacity="0.6" FontSize="12" />
-                    </StackPanel>
-                </Grid>
-
-                <!-- Override toggle -->
-                <Grid Margin="0 0 0 8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                        <TextBlock Text="Override subnet" FontWeight="Medium" />
-                        <TextBlock Text="Enter a custom x.x.x prefix instead of auto-detect"
-                                   Opacity="0.6" FontSize="12" />
-                    </StackPanel>
-                    <ui:ToggleSwitch x:Name="OverrideToggle" Grid.Column="1"
-                                     Click="OverrideToggle_Toggled" />
-                </Grid>
-
-                <!-- Override input (visible only when toggled on) -->
-                <ui:TextBox x:Name="SubnetOverrideBox"
-                            PlaceholderText="e.g. 192.168.1"
-                            Margin="0 0 0 12"
-                            Visibility="Collapsed"
-                            TextChanged="SubnetOverrideBox_TextChanged" />
-            </StackPanel>
-        </ui:CardExpander>
-
-        <!-- Columns card -->
-        <ui:CardExpander IsExpanded="False" Margin="0 0 0 12">
-            <ui:CardExpander.Header>
-                <StackPanel>
-                    <TextBlock Text="Columns" FontWeight="SemiBold" />
-                    <TextBlock Text="Choose which columns appear in the scan results"
-                               Opacity="0.6" FontSize="12" />
+        <Button Style="{StaticResource NavRowStyle}" Click="ColumnsButton_Click">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ui:SymbolIcon Symbol="Table24" FontSize="22" VerticalAlignment="Center"
+                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                               Margin="0 0 16 0" />
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Text="Columns" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                    <TextBlock Text="Choose which columns appear in each view"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
                 </StackPanel>
-            </ui:CardExpander.Header>
-
-            <StackPanel Margin="0 8 0 0">
-                <Grid Margin="0 0 0 8">
-                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                    <TextBlock Text="MAC Address" FontWeight="Medium" VerticalAlignment="Center" />
-                    <ui:ToggleSwitch x:Name="ColMacToggle" Grid.Column="1" Click="ColToggle_Changed" />
-                </Grid>
-                <Grid Margin="0 0 0 8">
-                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                    <TextBlock Text="Hostname" FontWeight="Medium" VerticalAlignment="Center" />
-                    <ui:ToggleSwitch x:Name="ColHostnameToggle" Grid.Column="1" Click="ColToggle_Changed" />
-                </Grid>
-                <Grid Margin="0 0 0 8">
-                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                    <TextBlock Text="Model" FontWeight="Medium" VerticalAlignment="Center" />
-                    <ui:ToggleSwitch x:Name="ColModelToggle" Grid.Column="1" Click="ColToggle_Changed" />
-                </Grid>
-                <Grid>
-                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                    <TextBlock Text="Ports" FontWeight="Medium" VerticalAlignment="Center" />
-                    <ui:ToggleSwitch x:Name="ColPortsToggle" Grid.Column="1" Click="ColToggle_Changed" />
-                </Grid>
-            </StackPanel>
-        </ui:CardExpander>
-
-        <!-- Manage Printers columns card -->
-        <ui:CardExpander IsExpanded="False" Margin="0 0 0 12">
-            <ui:CardExpander.Header>
-                <StackPanel>
-                    <TextBlock Text="Manage Printers Columns" FontWeight="SemiBold" />
-                    <TextBlock Text="Choose which columns appear in the manage printers view"
-                               Opacity="0.6" FontSize="12" />
-                </StackPanel>
-            </ui:CardExpander.Header>
-
-            <StackPanel Margin="0 8 0 0">
-                <Grid Margin="0 0 0 8">
-                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                    <TextBlock Text="Active Jobs" FontWeight="Medium" VerticalAlignment="Center" />
-                    <ui:ToggleSwitch x:Name="ManageColActiveJobsToggle" Grid.Column="1" Click="ManageColToggle_Changed" />
-                </Grid>
-                <Grid Margin="0 0 0 8">
-                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                    <TextBlock Text="Port Type" FontWeight="Medium" VerticalAlignment="Center" />
-                    <ui:ToggleSwitch x:Name="ManageColPortTypeToggle" Grid.Column="1" Click="ManageColToggle_Changed" />
-                </Grid>
-                <Grid Margin="0 0 0 8">
-                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                    <TextBlock Text="IP / Host" FontWeight="Medium" VerticalAlignment="Center" />
-                    <ui:ToggleSwitch x:Name="ManageColIpHostToggle" Grid.Column="1" Click="ManageColToggle_Changed" />
-                </Grid>
-                <Grid Margin="0 0 0 8">
-                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                    <TextBlock Text="Port" FontWeight="Medium" VerticalAlignment="Center" />
-                    <ui:ToggleSwitch x:Name="ManageColPortToggle" Grid.Column="1" Click="ManageColToggle_Changed" />
-                </Grid>
-                <Grid>
-                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                    <TextBlock Text="Driver" FontWeight="Medium" VerticalAlignment="Center" />
-                    <ui:ToggleSwitch x:Name="ManageColDriverToggle" Grid.Column="1" Click="ManageColToggle_Changed" />
-                </Grid>
-            </StackPanel>
-        </ui:CardExpander>
-
-        <StackPanel Orientation="Horizontal">
-            <ui:Button Content="Save" Appearance="Primary" Click="SaveButton_Click" Margin="0 0 12 0" />
-            <TextBlock x:Name="SaveStatus" VerticalAlignment="Center" Opacity="0.7" />
-        </StackPanel>
+                <ui:SymbolIcon Symbol="ChevronRight24" Grid.Column="2" FontSize="14"
+                               VerticalAlignment="Center"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+            </Grid>
+        </Button>
 
     </StackPanel>
 </Page>
