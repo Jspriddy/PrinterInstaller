@@ -62,8 +62,6 @@ namespace HPPrinterScanner.Pages
             var progress = new Progress<(int done, int total, NetworkPrinter? found)>(report =>
             {
                 ScanProgress.Value = report.done;
-                // Phase 1: done < total → ping sweep in progress
-                // Phase 2: done == total → probing HP-MAC devices, printers appear as found
                 ProgressLabel.Text = report.done < report.total
                     ? $"Pinging {report.done} / {report.total}"
                     : $"Found {Results.Count} HP device(s)";
@@ -104,11 +102,62 @@ namespace HPPrinterScanner.Pages
                 PromptInstall(printer);
         }
 
-        private void PromptInstall(NetworkPrinter printer)
+        private async void PromptInstall(NetworkPrinter printer)
         {
-            // TODO: replace with real install flow
-            MessageBox.Show($"Install \"{printer.Hostname ?? printer.IpAddress}\"?\n\nThis will be wired up in a future step.",
-                "Install Printer", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+            // Resolve the driver before showing any UI — fail fast with a clear message.
+            PrinterDriverMap.DriverInfo driverInfo;
+            try
+            {
+                driverInfo = PrinterDriverMap.Resolve(printer.Model);
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message, "Driver Not Found",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            string printerLabel = string.IsNullOrEmpty(printer.Hostname)
+                ? printer.IpAddress
+                : $"{printer.Hostname} ({printer.IpAddress})";
+
+            var dialog = new InstallDialog(printerLabel, printer.Model, driverInfo.DisplayName, driverInfo.DisplayName)
+            {
+                Owner = Window.GetWindow(this)
+            };
+
+            if (dialog.ShowDialog() != true) return;
+
+            printer.Status      = "Installing…";
+            InstallButton.IsEnabled = false;
+
+            try
+            {
+                var svc      = new PrinterInstallService();
+                var progress = new Progress<string>(msg => printer.Status = msg);
+                await svc.InstallAsync(
+                    printer.IpAddress,
+                    driverInfo.Key,
+                    dialog.ChosenName,
+                    dialog.SetAsDefault,
+                    progress);
+
+                printer.Status = "Installed";
+            }
+            catch (OperationCanceledException)
+            {
+                printer.Status = "Cancelled";
+            }
+            catch (Exception ex)
+            {
+                printer.Status = "Install failed";
+                MessageBox.Show(ex.Message, "Install Failed",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                InstallButton.IsEnabled = ResultsGrid.SelectedItem is NetworkPrinter;
+            }
         }
     }
 }

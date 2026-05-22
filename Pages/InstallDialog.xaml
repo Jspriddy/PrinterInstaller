@@ -1,0 +1,48 @@
+<Window x:Class="HPPrinterScanner.Pages.InstallDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Install Printer"
+        SizeToContent="Height"
+        Width="440"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="8"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Printer:" FontWeight="SemiBold" VerticalAlignment="Top" Margin="0,0,8,8"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" x:Name="PrinterLabel" TextWrapping="Wrap" Margin="0,0,0,8"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Detected model:" FontWeight="SemiBold" VerticalAlignment="Top" Margin="0,0,8,8"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" x:Name="ModelLabel" TextWrapping="Wrap" Margin="0,0,0,8"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Driver:" FontWeight="SemiBold" VerticalAlignment="Top" Margin="0,0,8,0"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" x:Name="DriverLabel" TextWrapping="Wrap"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Install as:" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,8,0"/>
+        <TextBox   Grid.Row="4" Grid.Column="1" x:Name="PrinterNameBox" Padding="4,3" VerticalContentAlignment="Center"/>
+
+        <CheckBox  Grid.Row="6" Grid.Column="1" x:Name="SetDefaultCheck" Content="Set as default printer"/>
+
+        <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"
+                    Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="InstallBtn" Content="_Install" Width="80" Margin="0,0,8,0"
+                    Click="InstallBtn_Click" IsDefault="True"/>
+            <Button Content="_Cancel" Width="80" Click="CancelBtn_Click" IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>

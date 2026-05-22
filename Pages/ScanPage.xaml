@@ -94,6 +94,7 @@
                 <DataGridTextColumn Header="Hostname"    Binding="{Binding Hostname}"    Width="160" />
                 <DataGridTextColumn Header="Model"       Binding="{Binding Model}"       Width="*"   />
                 <DataGridTextColumn Header="Ports"       Binding="{Binding Ports}"       Width="90"  />
+                <DataGridTextColumn Header="Status"      Binding="{Binding Status}"      Width="130" />
             </DataGrid.Columns>
         </DataGrid>
 
